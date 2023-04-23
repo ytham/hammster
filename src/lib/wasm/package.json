@@ -1,0 +1,14 @@
+{
+  "name": "halo2_hammster",
+  "version": "0.1.0",
+  "files": [
+    "hammster_bg.wasm",
+    "hammster.js",
+    "hammster.d.ts"
+  ],
+  "module": "hammster.js",
+  "types": "hammster.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
