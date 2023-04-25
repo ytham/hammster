@@ -29,6 +29,7 @@ export default function Home() {
         backgroundAttachment: 'fixed',
         backgroundPosition: 'right bottom',
         backgroundSize: '50%',
+        padding: "0 20px",
       }}>
         <Grid justify='center'>
           <Grid.Col xs={10} sm={8} md={6}>

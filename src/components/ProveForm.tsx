@@ -87,8 +87,10 @@ export const ProveForm = () => {
         <Text>
           Input two 8-bit binary values below. Remember the calculated hamming distance value for the Verify section.
         </Text>
-        <BinaryInput inputNum={0} form={form} />
-        <BinaryInput inputNum={1} form={form} />
+        <Stack align='flex-end'>
+          <BinaryInput inputNum={0} form={form} />
+          <BinaryInput inputNum={1} form={form} />
+        </Stack>
         <HammingDistance form={form} />
         <Group>
           <Input 
