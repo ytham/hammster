@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { SegmentedControl, Space, Stack, Text, Title } from '@mantine/core'
+import { Grid, SegmentedControl, Space, Stack, Text, Title } from '@mantine/core'
 import Link from 'next/link'
 import { ProveForm } from '@/components/ProveForm'
 import { useState } from 'react'
@@ -30,25 +30,30 @@ export default function Home() {
         backgroundPosition: 'right bottom',
         backgroundSize: '50%',
       }}>
-        <Stack align='center' w="480px" spacing="xl">
-          <Title order={1} ff={"montserrat"}>
-            Hammster
-          </Title>
-          <Text>
-            Hammster is written in <Link href="https://halo2.dev/">Halo2</Link>. It takes two 8-length vector inputs of 
-            binary digits and their <Link href="https://en.wikipedia.org/wiki/Hamming_distance">hamming distance</Link> and 
-            generates a proof that the two inputs are the claimed hamming distance away from each other. 
-          </Text>
-          <SegmentedControl 
-            value={page}
-            onChange={setPage}
-            data={[
-              { value: "prove", label: "Prove" },
-              { value: "verify", label: "Verify" },
-            ]}
-          />
-          { renderProveOrVerify() }
-        </Stack>
+        <Grid justify='center'>
+          <Grid.Col xs={10} sm={8} md={6}>
+            <Stack align='center' spacing="xl">
+              <Title order={1} ff={"helvetica neue"}>
+                Hammster
+              </Title>
+              <Text>
+                Hammster is written in <Link href="https://halo2.dev/">Halo2</Link>. It takes two 8-length vector inputs of 
+                binary digits and their <Link href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</Link> and 
+                generates a proof that the two inputs are the claimed hamming distance away from each other. 
+              </Text>
+              <SegmentedControl 
+                value={page}
+                onChange={setPage}
+                data={[
+                  { value: "prove", label: "Prove" },
+                  { value: "verify", label: "Verify" },
+                ]}
+              />
+              { renderProveOrVerify() }
+            </Stack>
+          </Grid.Col>
+        </Grid>
+        
         <Space h="16vh" />
       </Stack>
     </>

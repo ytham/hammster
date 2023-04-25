@@ -76,7 +76,7 @@ export const ProveForm = () => {
   
   return (
     <form onSubmit={form.onSubmit(submit)}>
-      <Stack align='center' w='480px' style={{
+      <Stack align='center' w='100%' style={{
         backgroundColor: "rgba(200,230,255,0.25)",
         backdropFilter: 'blur(8px)',
         border: "2px solid #eee",
