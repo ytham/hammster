@@ -149,7 +149,12 @@ impl<F: Field> Instructions<F> for HammsterChip<F> {
     type Num = Number<F>;
 
     // Loads private inputs into two advice columns and checks if the digits are binary values
-    fn load_private_and_check_binary(&self, mut layouter: impl Layouter<F>, column: usize, values: [Value<F>; BINARY_LENGTH]) -> Result<Vec<Self::Num>, Error> {
+    fn load_private_and_check_binary(
+        &self, 
+        mut layouter: impl Layouter<F>, 
+        column: usize, 
+        values: [Value<F>; BINARY_LENGTH]
+    ) -> Result<Vec<Self::Num>, Error> {
         let config = self.config();
 
         layouter.assign_region(
@@ -177,7 +182,12 @@ impl<F: Field> Instructions<F> for HammsterChip<F> {
     }
 
     // Performs and XOR operation between two field elements
-    fn xor(&self, mut layouter: impl Layouter<F>, a: Self::Num, b: Self::Num) -> Result<Self::Num, Error> {
+    fn xor(
+        &self, 
+        mut layouter: impl Layouter<F>, 
+        a: Self::Num, 
+        b: Self::Num
+    ) -> Result<Self::Num, Error> {
         let config = self.config();
 
         layouter.assign_region(
@@ -203,7 +213,11 @@ impl<F: Field> Instructions<F> for HammsterChip<F> {
     }
 
     // Accumulates the column of XOR results into a single number
-    fn accumulator(&self, mut layouter: impl Layouter<F>, values: [Self::Num; BINARY_LENGTH]) -> Result<Self::Num, Error> {
+    fn accumulator(
+        &self, 
+        mut layouter: impl Layouter<F>, 
+        values: [Self::Num; BINARY_LENGTH]
+    ) -> Result<Self::Num, Error> {
         let config = self.config();
 
         layouter.assign_region(
@@ -233,7 +247,11 @@ impl<F: Field> Instructions<F> for HammsterChip<F> {
     // Expose output of accumulated XORs as a public value. Constrain the accumulation value from 
     // (column advice[2], row BINARY_LENGTH) to equal instance column value in row 0 which is the 
     // public input of the Hamming distance calculated outside the circuit 
-    fn expose_public(&self, mut layouter: impl Layouter<F>, num: Self::Num) -> Result<(), Error> {
+    fn expose_public(
+        &self, 
+        mut layouter: impl Layouter<F>, 
+        num: Self::Num
+    ) -> Result<(), Error> {
         let config = self.config();
         layouter.constrain_instance(num.0.cell(), config.instance, 0)
     }
