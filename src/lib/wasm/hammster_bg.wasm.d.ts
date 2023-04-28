@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export function setup_params(): number;
+export function setup_params(a: number): number;
 export function proof_generate(a: number, b: number, c: number, d: number, e: number, f: number): number;
 export function proof_verify(a: number, b: number, c: number, d: number, e: number): number;
 export const memory: WebAssembly.Memory;

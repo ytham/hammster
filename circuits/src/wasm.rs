@@ -21,11 +21,10 @@ fn copy_vec_to_u8arr(v: &Vec<u8>) -> Uint8Array {
 }
 
 #[wasm_bindgen]
-pub fn setup_params() -> Uint8Array {
+pub fn setup_params(k: u32) -> Uint8Array {
     log("running setup");
     
     // Generate setup params
-    let k = 6;
     let params = generate_setup_params(k); 
     let mut buf = vec![];
     params.write(&mut buf).expect("Can write params");
@@ -34,7 +33,11 @@ pub fn setup_params() -> Uint8Array {
 }
 
 #[wasm_bindgen]
-pub fn proof_generate(a: &[u8], b: &[u8], params_bytes: &[u8]) -> Uint8Array {
+pub fn proof_generate(
+    a: &[u8], 
+    b: &[u8], 
+    params_bytes: &[u8]
+) -> Uint8Array {
     log("proving...");
     
     let params = Params::<EqAffine>::read(&mut BufReader::new(params_bytes)).expect("params should not fail to read");
@@ -56,7 +59,11 @@ pub fn proof_generate(a: &[u8], b: &[u8], params_bytes: &[u8]) -> Uint8Array {
 }
 
 #[wasm_bindgen]
-pub fn proof_verify(params_bytes: &[u8], hamming_dist: u32, proof: &[u8]) -> bool {
+pub fn proof_verify(
+    params_bytes: &[u8], 
+    hamming_dist: u32, 
+    proof: &[u8]
+) -> bool {
     log("verifying...");
 
     let params = Params::<EqAffine>::read(&mut BufReader::new(params_bytes)).expect("params should not fail to read");

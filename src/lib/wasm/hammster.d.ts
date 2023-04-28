@@ -1,9 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {number} k
 * @returns {Uint8Array}
 */
-export function setup_params(): Uint8Array;
+export function setup_params(k: number): Uint8Array;
 /**
 * @param {Uint8Array} a
 * @param {Uint8Array} b
@@ -22,7 +23,7 @@ export function proof_verify(params_bytes: Uint8Array, hamming_dist: number, pro
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
-  readonly setup_params: () => number;
+  readonly setup_params: (a: number) => number;
   readonly proof_generate: (a: number, b: number, c: number, d: number, e: number, f: number) => number;
   readonly proof_verify: (a: number, b: number, c: number, d: number, e: number) => number;
   readonly memory: WebAssembly.Memory;

@@ -53,10 +53,13 @@ export const VerifyForm = () => {
     }
     const proof = Uint8Array.from((proofString as string).split(',').map((x: string) => parseInt(x)));
 
-    // Set up hammster wasm & verify the proof
+    // Set up hammster Wasm
     await hm.default();
+
+    // Verify the proof
     const result = hm.proof_verify(params, values.hammingDist, proof);
     
+    // Show a notification based on the result of the proof verification
     if (result) {
       notifications.show({
         title: "Success!",

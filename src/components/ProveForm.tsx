@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Group, Input, Stack, Text } from "@mantine/core"
 import { BinaryInput } from "./BinaryInput"
 import { useForm } from "@mantine/form"
@@ -7,8 +6,6 @@ import { notifications } from '@mantine/notifications';
 import * as hm from '../lib/wasm/hammster.js'
 
 export const ProveForm = () => {
-  const [proof, setProof] = useState<Uint8Array>(new Uint8Array());
-
   const form = useForm({
     initialValues: {
       input0: '',
@@ -18,10 +15,12 @@ export const ProveForm = () => {
 
   const submit = async (values: any) => {
     console.log(values);
+
+    // Set up hammster Wasm
     await hm.default();
 
     // Run setup
-    const params = hm.setup_params();
+    const params = hm.setup_params(6);
     try {
       localStorage.setItem("setupParams", params.toString());
     } catch (err) {
@@ -49,8 +48,6 @@ export const ProveForm = () => {
       })
       return;
     }
-
-    setProof(proof);
 
     // Save proof to localStorage
     try {

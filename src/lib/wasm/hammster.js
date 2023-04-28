@@ -46,10 +46,11 @@ function addHeapObject(obj) {
     return idx;
 }
 /**
+* @param {number} k
 * @returns {Uint8Array}
 */
-export function setup_params() {
-    const ret = wasm.setup_params();
+export function setup_params(k) {
+    const ret = wasm.setup_params(k);
     return takeObject(ret);
 }
 
