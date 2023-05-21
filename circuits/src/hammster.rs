@@ -114,6 +114,7 @@ impl<F: Field> HammsterChip<F> {
             let out = meta.query_advice(advice[2], Rotation::cur());
             let s_xor = meta.query_selector(s_xor);
 
+            // The XOR constraint is defined as (a + b - 2ab - out) == 0
             vec![s_xor * (lhs.clone() + rhs.clone() - Expression::Constant(F::ONE.double()) * lhs * rhs - out)]
         });
 
