@@ -114,7 +114,7 @@ impl<F: Field> HammsterChip<F> {
             let out = meta.query_advice(advice[2], Rotation::cur());
             let s_xor = meta.query_selector(s_xor);
 
-            vec![s_xor * ((lhs * out.clone()) + (rhs * out.clone()) - out)]
+            vec![s_xor * (lhs.clone() + rhs.clone() - Expression::Constant(F::ONE.double()) * lhs * rhs - out)]
         });
 
         // This gate accumulates all of the values from the column of results of the XOR gate above it
